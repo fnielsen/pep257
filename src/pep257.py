@@ -282,6 +282,7 @@ class Parser(object):
                 self.consume(kind)
                 return
             self.stream.move()
+        raise tk.TokenError('Invalid syntax. Expected %d' % (kind,))
 
     def parse_docstring(self):
         """Parse a single docstring and return its value."""
@@ -1228,7 +1229,7 @@ def check(filenames, select=None, ignore=None):
         except (EnvironmentError, AllError):
             yield sys.exc_info()[1]
         except tk.TokenError:
-            yield SyntaxError('invalid syntax in file %s' % filename)
+            yield SyntaxError('Invalid syntax in file %s' % filename)
 
 
 def setup_stream_handlers(conf):
