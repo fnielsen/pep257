@@ -282,7 +282,7 @@ class Parser(object):
                 self.consume(kind)
                 return
             self.stream.move()
-        raise tk.TokenError('Invalid syntax. Expected %d' % (kind,))
+        raise tk.TokenError('Expected token #%d' % (kind,))
 
     def parse_docstring(self):
         """Parse a single docstring and return its value."""
